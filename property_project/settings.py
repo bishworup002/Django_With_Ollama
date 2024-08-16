@@ -1,5 +1,6 @@
 from pathlib import Path
 from config import DJANGO_DB, SECRET_KEY, DEBUG, ALLOWED_HOSTS  # Import configurations
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,8 +43,9 @@ ROOT_URLCONF = "property_project.urls"
 
 TEMPLATES = [
     {
+        "DIRS": [BASE_DIR / "templates"],
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -62,6 +64,10 @@ WSGI_APPLICATION = "property_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {"default": DJANGO_DB}  # Use the imported database settings
+
+# Add these settings for serving media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
