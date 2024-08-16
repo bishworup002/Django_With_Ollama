@@ -26,7 +26,7 @@ This project is a Django application for managing property information. It inclu
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/property_project.git
+   git clone https://github.com/bishworup002/property_project.git
    cd property_project
    ```
 

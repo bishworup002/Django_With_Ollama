@@ -52,6 +52,7 @@ MANIFEST
 # image 
 
 **/property_images/  
+property_images/  
 
 # Installer logs
 pip-log.txt
