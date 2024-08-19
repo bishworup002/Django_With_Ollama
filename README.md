@@ -1,3 +1,6 @@
+To add a section on creating a superuser in Django, I'll include it under the "Setup" section. Here's the updated documentation:
+
+---
 
 # Property Project
 
@@ -12,6 +15,7 @@ This project is a Django application for managing property information. It inclu
 - [Configuration](#configuration)
 - [Running the Project](#running-the-project)
 - [Migration Command](#migration-command)
+- [Create a Superuser](#create-a-superuser)
 
 ## Requirements
 
@@ -42,6 +46,16 @@ This project is a Django application for managing property information. It inclu
    ```bash
    pip install -r requirements.txt
    ```
+
+4. **Create a Superuser**
+
+   After applying migrations, create a superuser to access the Django admin panel:
+
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+   Follow the prompts to set up a username, email, and password.
 
 ## Configuration
 
@@ -85,16 +99,6 @@ This project is a Django application for managing property information. It inclu
    python manage.py migrate
    ```
 
-## Running the Project
-
-1. **Start the Development Server**
-
-   ```bash
-   python manage.py runserver
-   ```
-
-   The application will be accessible at `http://127.0.0.1:8000/`.
-
 ## Migration Command
 
 To migrate data from the Scrapy project's database into the Django models, use the custom management command:
@@ -103,9 +107,19 @@ To migrate data from the Scrapy project's database into the Django models, use t
 python manage.py migrate_data
 ```
 
-This command will connect to the Scrapy database, fetch property data, and save it into the Django models.
+## Running the Project
+
+1. **Start the Development Server**
+
+   ```bash
+   python manage.py runserver
+   ```  
+   The application will be accessible at `http://localhost:8000/admin/` or `http://localhost:8000/`.
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+--- 
+
+This update adds a step to create a Django superuser after the migrations are applied.
