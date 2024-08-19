@@ -53,8 +53,6 @@ MANIFEST
 
 **/property_images/  
 property_images/  
-migrations/
-**/migrations/
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
