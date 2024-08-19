@@ -47,13 +47,6 @@ This project is a Django application for managing property information. It inclu
    pip install -r requirements.txt
    ```
 
-4. **Create a Superuser**
-
-   After applying migrations, create a superuser to access the Django admin panel:
-
-   ```bash
-   python manage.py createsuperuser
-   ```
 
    Follow the prompts to set up a username, email, and password.
 
@@ -69,8 +62,8 @@ This project is a Django application for managing property information. It inclu
    # Scrapy project's database configuration
    SCRAPY_DB = {
        "dbname": "trip",  # Replace with your Scrapy DB name
-       "user": "postgres",
-       "password": "p@stgress",
+       "user": "postgres", # Replace with your user name
+       "password": "password",# Replace with your user password
        "host": "localhost",
        "port": "5433",
    }
@@ -78,15 +71,15 @@ This project is a Django application for managing property information. It inclu
    # Django project's database configuration
    DJANGO_DB = {
        "ENGINE": "django.db.backends.postgresql",
-       "NAME": "hotel",
-       "USER": "postgres",
-       "PASSWORD": "p@stgress",
+       "NAME": "hotel", # Replace with your  DB name
+       "USER": "postgres",  # Replace with your user name
+       "PASSWORD": "password", ,# Replace with your user password
        "HOST": "localhost",
        "PORT": "5433",
    }
 
    # Security settings
-   SECRET_KEY = "django-insecure-_^if9w822)#2!5citetave_9lct@ig#87n*y2rtti6=0l(=2wf"
+   SECRET_KEY = "SECRET_KEY" # Replace with your user SECRET_KEY
    DEBUG = True
    ALLOWED_HOSTS = []
    ```
@@ -96,8 +89,17 @@ This project is a Django application for managing property information. It inclu
    Run the following command to create the necessary database tables:
 
    ```bash
+   python manage.py makemigrations
+
    python manage.py migrate
    ```
+ 3. **Create a Superuser**
+
+   After applying migrations, create a superuser to access the Django admin panel:
+
+   ```bash
+   python manage.py createsuperuser
+   ```  
 
 ## Migration Command
 
