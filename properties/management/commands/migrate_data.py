@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
         # Execute a query to fetch data from the Scrapy table
         cur.execute(
-            "SELECT id, title, rating, location, latitude, longitude, room_type, price, image_urls FROM trips"
+            "SELECT id, title, location, latitude, longitude,  image_urls FROM trips"
         )
         rows = cur.fetchall()
 
@@ -32,28 +32,35 @@ class Command(BaseCommand):
             (
                 property_id,
                 title,
-                rating,
                 location,
                 latitude,
                 longitude,
-                room_type,
-                price,
                 image_urls,
             ) = row
 
             # Create or get the Location instance
-            location_instance, _ = Location.objects.get_or_create(name=location)
+            location_instance, created = Location.objects.get_or_create(
+                name=location,
+                defaults={
+                    "type": "country",  # Default type is country
+                    "latitude": latitude,
+                    "longitude": longitude,
+                },
+            )
+
+            # Update location if it was not created (i.e., it already existed)
+            if not created:
+                location_instance.type = "country"
+                location_instance.latitude = latitude
+                location_instance.longitude = longitude
+                location_instance.save()
 
             # Create or update the Property instance
             property_instance, created = Property.objects.update_or_create(
                 property_id=property_id,
                 defaults={
                     "title": title,
-                    "rating": rating,
-                    "latitude": latitude,
-                    "longitude": longitude,
-                    "room_type": room_type,
-                    "price": price,
+                    "description": "",  # Empty description as per new model
                     "create_date": timezone.now(),
                     "update_date": timezone.now(),
                 },

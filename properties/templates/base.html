@@ -14,17 +14,20 @@
 </head>
 <body>
     <header>
-        <h1>Property Project</h1>
+        <h1 style="text-align: center;">Property Project</h1>
         <nav>
-            <a href="{% url 'property_list' %}">All Properties</a>
+            <a href="{% url 'property_list' %}" style="text-decoration: none;">All Properties</a>
         </nav>
     </header>
     <main>
         {% block content %}
         {% endblock %}
     </main>
-    <footer>
-        <p>&copy; 2024 Property Project</p>
+    <footer style="position: fixed; top:95%; width: 100%; z-index: 10;">
+        <div style="text-align: center; background-color: aqua; height: 3rem; display: flex; justify-content: center; align-items: center;">
+
+            <div style="opacity: 100%;">&copy; 2024 Property Project</div>
+        </div>
     </footer>
 </body>
 </html>

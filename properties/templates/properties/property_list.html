@@ -5,10 +5,18 @@
 <div class="property-list">
     {% for property in properties %}
     <div class="property-item">
-        <h2><a href="{% url 'property_detail' property.property_id %}">{{ property.title }}</a></h2>
-        <p>Rating: {{ property.rating }}</p>
-        <p>Room Type: {{ property.room_type }}</p>
-        <p>Price: {{ property.price }}</p>
+        <h2 ><a href="{% url 'property_detail' property.property_id %}" style="text-decoration: none;">{{ property.title }}</a></h2>
+        <p>Locations: {{ property.locations.all.first }}</p>
+        <!-- <p>Description: {{ property.description }}</p> -->
+        <span>Amenities :</span>
+        {% for amenity in property.amenities.all %}
+        {{ amenity.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        {% if property.image %}
+        <img src="{{ MEDIA_URL }}{{ property.image.image }}" alt="{{ property.title }}" style="width: 20rem; height: 20rem;">
+        {% else %}
+        <p>No image available</p>
+        {% endif %}
     </div>
     {% empty %}
     <p>No properties available.</p>

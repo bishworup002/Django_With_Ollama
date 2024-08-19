@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ property.title }}</h1>
-<p>Rating: {{ property.rating }}</p>
-<p>Room Type: {{ property.room_type }}</p>
-<p>Price: {{ property.price }}</p>
-<p>Locations:
-    {% for location in property.locations.all %}
-        {{ location.name }}{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
-<p>Amenities:
-    {% for amenity in property.amenities.all %}
-        {{ amenity.name }}{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-</p>
-<h2>Images: {{ property.images.count }}</h2>
+ <h1>{{ property.title }}</h1>
+    <p>Description: {{ property.description }}</p>
+    <p>Locations:
+        {% for location in property.locations.all %}
+            {{ location.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    <p>Amenities:
+        {% for amenity in property.amenities.all %}
+            {{ amenity.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p> 
+ 
 
 
+<div style="display: flex ;flex-direction: row; align-items: center; justify-content: start; flex-wrap: wrap;">
 {% for image in property.images.all %}
-    <img src="{{ MEDIA_URL }}{{ image.image }}" alt="{{ MEDIA_URL }}{{ image.image }}" style="max-width: 300px;">
-    <h2>{{ MEDIA_URL }}{{ image.image }}</h2>
+    
+        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="{{ MEDIA_URL }}{{ image.image }}" style="width: 40rem; margin: 5rem;">
+   
 {% endfor %}
+</div>
 {% endblock %}
