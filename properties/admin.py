@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Property, Location, Amenity, PropertyImage
-from django.utils.html import format_html
+from django.utils.html import format_html, format_html_join
 
 
 @admin.register(Property)
@@ -9,11 +9,29 @@ class PropertyAdmin(admin.ModelAdmin):
         "property_id",
         "title",
         "description",
+        "get_amenity",
+        "get_locations",  # Display locations as an unordered list
         "create_date",
         "update_date",
     )
     search_fields = ["title"]
     filter_horizontal = ("locations", "amenities")
+
+    def get_amenity(self, obj):
+        return ", ".join([amenity.name for amenity in obj.amenities.all()])
+
+    get_amenity.short_description = "Amenity"
+
+    def get_locations(self, obj):
+        locations = obj.locations.all()
+        return format_html(
+            "<ol>{}</ol>",
+            format_html_join(
+                "", "<li>{}</li>", ((location.name,) for location in locations)
+            ),
+        )
+
+    get_locations.short_description = "Locations"
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
