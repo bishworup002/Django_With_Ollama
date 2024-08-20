@@ -38,6 +38,11 @@ class Command(BaseCommand):
                 image_urls,
             ) = row
 
+            # Check if a property with the same title already exists
+            property_instance = Property.objects.filter(title=title).first()
+            if property_instance:
+                continue
+
             # Create or get the Location instance
             location_instance, created = Location.objects.get_or_create(
                 name=location,
