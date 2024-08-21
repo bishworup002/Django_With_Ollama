@@ -23,29 +23,23 @@ class Command(BaseCommand):
 
         # Execute a query to fetch data from the Scrapy table
         cur.execute(
-            "SELECT id, title, location, latitude, longitude,  image_urls FROM trips"
+            "SELECT title, location, latitude, longitude, image_urls FROM trips"
         )
         rows = cur.fetchall()
 
         # Migrate each row into the Django Property model
         for row in rows:
             (
-                property_id,
                 title,
-                location,
+                location_name,
                 latitude,
                 longitude,
                 image_urls,
             ) = row
 
-            # Check if a property with the same title already exists
-            property_instance = Property.objects.filter(title=title).first()
-            if property_instance:
-                continue
-
             # Create or get the Location instance
             location_instance, created = Location.objects.get_or_create(
-                name=location,
+                name=location_name,
                 defaults={
                     "type": "country",  # Default type is country
                     "latitude": latitude,
@@ -62,9 +56,8 @@ class Command(BaseCommand):
 
             # Create or update the Property instance
             property_instance, created = Property.objects.update_or_create(
-                property_id=property_id,
+                title=title,
                 defaults={
-                    "title": title,
                     "description": "",  # Empty description as per new model
                     "create_date": timezone.now(),
                     "update_date": timezone.now(),

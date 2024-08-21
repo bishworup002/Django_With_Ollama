@@ -6,7 +6,6 @@ from django.utils.html import format_html, format_html_join
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
     list_display = (
-        "property_id",
         "title",
         "description",
         "get_amenity",
@@ -52,7 +51,7 @@ class AmenityAdmin(admin.ModelAdmin):
 
 @admin.register(PropertyImage)
 class PropertyImageAdmin(admin.ModelAdmin):
-    list_display = ("id", "property", "image", "image_View")
+    list_display = ("property", "image", "image_View")
     search_fields = ["property__title"]
 
     def image_View(self, obj):

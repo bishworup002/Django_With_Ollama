@@ -23,7 +23,6 @@ class Location(models.Model):
 
 
 class Property(models.Model):
-    property_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, unique=True)
     description = models.CharField(max_length=1000, blank=True, default="")
     locations = models.ManyToManyField(Location, related_name="properties")
