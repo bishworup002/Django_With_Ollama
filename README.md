@@ -33,15 +33,15 @@ This project is a Django application for managing property information. It inclu
 
 2. **Create and Activate a Virtual Environment**
 
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  
-   ```
-   Or
-    
     ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+   ```
+   Or
+
+    ```bash
+   python3 -m venv venv
+   source venv/bin/activate  
    ```
 
 3. **Install Dependencies**
@@ -55,7 +55,12 @@ This project is a Django application for managing property information. It inclu
 
 ## Configuration
 
-1. **Set Up Database**
+1. Create config.py
+   ```bash
+    touch config.py
+   ```
+
+2. **Set Up Database**
 
    Ensure that PostgreSQL is installed and running. Create a database and configure the credentials in `config.py`:
 
@@ -87,7 +92,7 @@ This project is a Django application for managing property information. It inclu
    ALLOWED_HOSTS = []
    ```
 
-2. **Apply Migrations**
+3. **Apply Migrations**
 
    Run the following command to create the necessary database tables:
 
@@ -96,7 +101,7 @@ This project is a Django application for managing property information. It inclu
 
    python manage.py migrate
    ```
- 3. **Create a Superuser**
+ 4. **Create a Superuser**
 
      After applying migrations, create a superuser to access the Django admin panel:
 
