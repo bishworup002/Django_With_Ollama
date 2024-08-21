@@ -34,6 +34,12 @@ This project is a Django application for managing property information. It inclu
 2. **Create and Activate a Virtual Environment**
 
    ```bash
+   python3 -m venv venv
+   source venv/bin/activate  
+   ```
+   Or
+    
+    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
    ```

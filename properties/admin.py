@@ -10,7 +10,7 @@ class PropertyAdmin(admin.ModelAdmin):
         "title",
         "description",
         "get_amenity",
-        "get_locations",  # Display locations as an unordered list
+        "get_locations",
         "create_date",
         "update_date",
     )
@@ -20,7 +20,7 @@ class PropertyAdmin(admin.ModelAdmin):
     def get_amenity(self, obj):
         return ", ".join([amenity.name for amenity in obj.amenities.all()])
 
-    get_amenity.short_description = "Amenity"
+    get_amenity.short_description = "Amenities"
 
     def get_locations(self, obj):
         locations = obj.locations.all()
@@ -42,6 +42,7 @@ class PropertyAdmin(admin.ModelAdmin):
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ("name", "type", "latitude", "longitude")
+    search_fields = ["name"]
 
 
 @admin.register(Amenity)
@@ -51,10 +52,28 @@ class AmenityAdmin(admin.ModelAdmin):
 
 @admin.register(PropertyImage)
 class PropertyImageAdmin(admin.ModelAdmin):
-    list_display = ("id", "property", "image", "thumb")
+    list_display = ("id", "property", "image", "image_View")
     search_fields = ["property__title"]
 
-    def thumb(self, obj):
-        return format_html(f"<img src='{obj.image.url}' width='100' height='100' />")
+    def image_View(self, obj):
+        if obj.image:
+            return format_html(
+                f"<img src='{obj.image.url}' width='100' height='100' />"
+            )
+        return "No Image"
 
-    thumb.short_description = "View"
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        formfield = super(PropertyImageAdmin, self).formfield_for_dbfield(
+            db_field, request, **kwargs
+        )
+        if db_field.name == "image" and request.resolver_match.kwargs.get("object_id"):
+            # Get the current object
+            obj = self.get_object(
+                request, request.resolver_match.kwargs.get("object_id")
+            )
+            if obj and obj.image:
+                # Add an HTML image tag to show the current image
+                formfield.help_text = format_html(
+                    f'<img src="{obj.image.url}" width="200" height="200" style="display: block; margin-bottom: 10px;" />'
+                )
+        return formfield
