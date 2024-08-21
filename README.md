@@ -1,6 +1,3 @@
-To add a section on creating a superuser in Django, I'll include it under the "Setup" section. Here's the updated documentation:
-
----
 
 # Property Project
 
@@ -15,7 +12,7 @@ This project is a Django application for managing property information. It inclu
 - [Configuration](#configuration)
 - [Running the Project](#running-the-project)
 - [Migration Command](#migration-command)
-- [Create a Superuser](#create-a-superuser)
+
 
 ## Requirements
 
@@ -54,7 +51,7 @@ This project is a Django application for managing property information. It inclu
 
 1. **Set Up Database**
 
-   Ensure that PostgreSQL is installed and running. Create a database named `hotel` and configure the credentials in `config.py`:
+   Ensure that PostgreSQL is installed and running. Create a database and configure the credentials in `config.py`:
 
    ```python
    # config.py
@@ -95,15 +92,15 @@ This project is a Django application for managing property information. It inclu
    ```
  3. **Create a Superuser**
 
-   After applying migrations, create a superuser to access the Django admin panel:
+     After applying migrations, create a superuser to access the Django admin panel:
 
-   ```bash
-   python manage.py createsuperuser
-   ```  
+      ```bash
+      python manage.py createsuperuser
+      ```  
 
 ## Migration Command
 
-To migrate data from the Scrapy project's database into the Django models, use the custom management command:
+To migrate data from the Scrapy project's database into the Django models, use the custom management command. <b>This process may take a few seconds, please wait.</b>
 
 ```bash
 python manage.py migrate_data
