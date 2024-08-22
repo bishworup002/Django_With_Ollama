@@ -42,3 +42,13 @@ class PropertyImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.property.title}"
+
+
+class PropertySummary(models.Model):
+    property = models.OneToOneField(
+        Property, on_delete=models.CASCADE, related_name="summary"
+    )
+    summary = models.TextField()
+
+    def __str__(self):
+        return f"Summary for {self.property.title}"
