@@ -101,7 +101,8 @@ class Command(BaseCommand):
                 content = response["message"]["content"].strip()
 
                 # Remove any Markdown formatting like **, __, and unnecessary spaces
-                clean_text = content.strip().strip("**")
+                clean_text = content.split("\n")[0].strip("**").strip("__").strip()
+
                 return clean_text
             else:
                 self.stdout.write(self.style.ERROR("Unexpected response structure."))
