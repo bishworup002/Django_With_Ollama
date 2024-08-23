@@ -8,7 +8,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         properties = Property.objects.all()
-        self.stdout.write(self.style.NOTICE(f"Found {properties.count()} properties."))
+        self.stdout.write(
+            self.style.NOTICE(
+                "Successfully Work Ollama. IT take a few minutes, please wait"
+            )
+        )
 
         for property in properties:
             title = property.title
@@ -30,7 +34,7 @@ class Command(BaseCommand):
                 property.description = description
                 property.save()
                 self.stdout.write(
-                    self.style.SUCCESS(f"Updated description for {title}")
+                    self.style.SUCCESS(f"\nUpdated description for {title}")
                 )
 
                 # Create a prompt for the title generation
