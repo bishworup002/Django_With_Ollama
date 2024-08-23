@@ -27,8 +27,8 @@ This project is a Django application for managing property information. It inclu
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/bishworup002/property_project.git
-   cd property_project
+   git clone https://github.com/bishworup002/Django_With_Ollama.git
+   cd Django_With_Ollama
    ```
 
 2. **Create and Activate a Virtual Environment**
