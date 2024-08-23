@@ -242,11 +242,9 @@ python manage.py generate_descriptions
     ```
 
 
-3. Access the admin panel at <h3> `http://127.0.0.1:8000/admin` </h3>
-
 2. Access the application at <h3> `http://127.0.0.1:8000` </h3>
 
-
+3. Access the admin panel at <h3> `http://127.0.0.1:8000/admin` </h3>
 
 ## License
 

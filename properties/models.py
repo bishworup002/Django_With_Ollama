@@ -4,6 +4,10 @@ from django.db import models
 class Amenity(models.Model):
     name = models.CharField(max_length=255)
 
+    class Meta:
+        verbose_name = "Amenity"
+        verbose_name_plural = "Amenities"
+
     def __str__(self):
         return self.name
 
@@ -30,6 +34,10 @@ class Property(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = "Property"
+        verbose_name_plural = "Properties"
+
     def __str__(self):
         return self.title
 
@@ -49,6 +57,10 @@ class PropertySummary(models.Model):
         Property, on_delete=models.CASCADE, related_name="summary"
     )
     summary = models.TextField()
+
+    class Meta:
+        verbose_name = "PropertySummary"
+        verbose_name_plural = "PropertySummary"
 
     def __str__(self):
         return f"Summary for {self.property.title}"

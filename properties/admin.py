@@ -48,6 +48,9 @@ class LocationAdmin(admin.ModelAdmin):
 class AmenityAdmin(admin.ModelAdmin):
     list_display = ("name",)
 
+    class Meta:
+        verbose_name = "Amenities"
+
 
 @admin.register(PropertySummary)
 class PropertySummaryAdmin(admin.ModelAdmin):
