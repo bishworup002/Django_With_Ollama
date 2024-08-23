@@ -60,7 +60,7 @@ class PropertySummary(models.Model):
 
     class Meta:
         verbose_name = "PropertySummary"
-        verbose_name_plural = "PropertySummary"
+        verbose_name_plural = "PropertySummaries"
 
     def __str__(self):
         return f"Summary for {self.property.title}"
