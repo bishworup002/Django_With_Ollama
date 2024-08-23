@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Property, Location, Amenity, PropertyImage
+from .models import Property, Location, Amenity, PropertyImage, PropertySummary
 from django.utils.html import format_html, format_html_join
 
 
@@ -47,6 +47,15 @@ class LocationAdmin(admin.ModelAdmin):
 @admin.register(Amenity)
 class AmenityAdmin(admin.ModelAdmin):
     list_display = ("name",)
+
+
+@admin.register(PropertySummary)
+class PropertySummaryAdmin(admin.ModelAdmin):
+    list_display = (
+        "property",
+        "summary",
+    )
+    search_fields = ["property__title"]
 
 
 @admin.register(PropertyImage)

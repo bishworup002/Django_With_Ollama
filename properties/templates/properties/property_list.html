@@ -10,8 +10,9 @@
         {% else %}
         <p>No image available</p>
         {% endif %}
-        <h2>{{ property.title }}</h2>
+        <h2><a href="{% url 'property_details' property.pk %}" style="text-decoration: none;">{{ property.title }}</a></h2>
         <p>Locations: {{ property.locations.all.first }}</p>
+        <!-- <p>{{ property.summary.summary }}</p> -->
         <span>Amenities:</span>
         {% for amenity in property.amenities.all %}
         {{ amenity.name }}{% if not forloop.last %}, {% endif %}

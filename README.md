@@ -11,7 +11,7 @@ This project is a Django application for managing property information. It inclu
 - [Setup](#setup)
 - [Configuration](#configuration)
 - [Running the Project](#running-the-project)
-- [Migration Command](#migration-command)
+- [Generate and Update Database Command](#generate-and-update-database-command)
 
 
 ## Requirements
@@ -67,15 +67,6 @@ This project is a Django application for managing property information. It inclu
    ```python
    # config.py
 
-   # Scrapy project's database configuration
-   SCRAPY_DB = {
-       "dbname": "trip",  # Replace with your Scrapy DB name
-       "user": "postgres", # Replace with your user name
-       "password": "password",# Replace with your user password
-       "host": "localhost",
-       "port": "5433",
-   }
-
    # Django project's database configuration
    DJANGO_DB = {
        "ENGINE": "django.db.backends.postgresql",
@@ -109,13 +100,19 @@ This project is a Django application for managing property information. It inclu
       python manage.py createsuperuser
       ```  
 
-## Migration Command
+Here's the refined version of your statement:
 
-To migrate data from the Scrapy project's database into the Django models, use the custom management command. <b>This process may take a few seconds, please wait.</b>
+---
+
+## Generate and Update Database Command
+
+To update the database with data generated from the Django project, use the custom management command. **This process may take a few minutes, please wait.**
 
 ```bash
-python manage.py migrate_data
+python manage.py generate_descriptions
 ```
+
+--- 
 
 ## Running the Project
 

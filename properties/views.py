@@ -14,3 +14,12 @@ def property_list(request):
         "MEDIA_URL": settings.MEDIA_URL,
     }
     return render(request, "properties/property_list.html", context)
+
+
+def property_details(request, pk):
+    property = get_object_or_404(Property, pk=pk)
+    context = {
+        "property": property,
+        "MEDIA_URL": settings.MEDIA_URL,
+    }
+    return render(request, "properties/property_detail.html", context)

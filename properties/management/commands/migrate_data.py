@@ -10,6 +10,15 @@ from config import SCRAPY_DB  # Import your config
 class Command(BaseCommand):
     help = "Migrate data from Scrapy project database to Django"
 
+    # # Scrapy project's database configuration in Config.py
+    # SCRAPY_DB = {
+    #     "dbname": "trip",  # Replace with your Scrapy DB name
+    #     "user": "postgres", # Replace with your user name
+    #     "password": "password",# Replace with your user password
+    #     "host": "localhost",
+    #     "port": "5433",
+    # }
+
     def handle(self, *args, **kwargs):
         # Connect to the Scrapy project's database using the config
         conn = psycopg2.connect(

@@ -102,6 +102,8 @@ class Command(BaseCommand):
 
                 # Remove any Markdown formatting like **, __, and unnecessary spaces
                 clean_text = content.split("\n")[0].strip("**").strip("__").strip()
+                if clean_text.endswith("**"):
+                    return clean_text[:-2].strip()
 
                 return clean_text
             else:

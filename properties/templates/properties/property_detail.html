@@ -1,49 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
- <h1>{{ property.title }}</h1>
-    <p>Description: {{ property.description }}</p>
-    <p>Locations:
+<h1>{{ property.title }}</h1>
+
+<div class="property-details">
+    {% if property.images.all %}
+        {% for image in property.images.all %}
+        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="{{ property.title }}" style="width: 20rem; height: 20rem;">
+        {% endfor %}
+    {% else %}
+    <p>No images available</p>
+    {% endif %}
+
+    <h2>Description</h2>
+    <p>{{ property.description }}</p>
+
+    <h2>Locations</h2>
+    <ul>
         {% for location in property.locations.all %}
-            {{ location.name }}{% if not forloop.last %}, {% endif %}
+        <li>{{ location.name }} ({{ location.get_type_display }})</li>
         {% endfor %}
-    </p>
-    <p>Amenities:
+    </ul>
+
+    <h2>Amenities</h2>
+    <ul>
         {% for amenity in property.amenities.all %}
-            {{ amenity.name }}{% if not forloop.last %}, {% endif %}
+        <li>{{ amenity.name }}</li>
         {% endfor %}
-    </p> 
- 
+    </ul>
 
-
-<div style="display: flex ;flex-direction: row; align-items: center; justify-content:start; flex-wrap: wrap;">
-{% for image in property.images.all %}
-    
-        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="{{ MEDIA_URL }}{{ image.image }}"class="Images1" >
-   
-{% endfor %}
+    <h2>Summary</h2>
+    <p>{{ property.summary.summary }}</p>
 </div>
-<style>
-    .Images1{
-        width: 40%; height: 30rem; margin: 1rem; object-fit: cover;
-        overflow: hidden;
-
-    }
-    @media only screen and (max-width: 820px) {
-        .Images1{
-        width: 40%; 
-        object-fit: contain;
-        height: auto;
-
-      }
-    }
-    @media only screen and (max-width: 600px) {
-        .Images1{
-        width: 100%; 
-        object-fit: contain;
-        height: auto;
-
-    }
-  }
-</style>
 {% endblock %}
