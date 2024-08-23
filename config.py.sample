@@ -1,0 +1,16 @@
+# config.py
+
+# Django project's database configuration
+DJANGO_DB = {
+    "ENGINE": "django.db.backends.postgresql",
+    "NAME": "hotel", # Replace with your  DB name
+    "USER": "postgres",  # Replace with your user name
+    "PASSWORD": "password", ,# Replace with your user password
+    "HOST": "localhost",
+    "PORT": "5433",
+}
+
+# Security settings
+SECRET_KEY = "SECRET_KEY" # Replace with your user SECRET_KEY
+DEBUG = True
+ALLOWED_HOSTS = []

@@ -92,8 +92,8 @@ class Command(BaseCommand):
                 model="gemma2:2b", messages=[{"role": "user", "content": prompt}]
             )
 
-            # Log the full response for inspection
-            self.stdout.write(self.style.NOTICE(f"Response Data: {response}"))
+            # # Log the full response for inspection
+            # self.stdout.write(self.style.NOTICE(f"Response Data: {response}"))
 
             # Check and extract the generated content from the response
             if "message" in response and "content" in response["message"]:

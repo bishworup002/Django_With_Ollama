@@ -6,7 +6,7 @@
 <div class="property-details">
     {% if property.images.all %}
         {% for image in property.images.all %}
-        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="{{ property.title }}" style="width: 20rem; height: 20rem;">
+        <img src="{{ MEDIA_URL }}{{ image.image }}" alt="" style="width: 20rem; height: 20rem;">
         {% endfor %}
     {% else %}
     <p>No images available</p>
